@@ -44,6 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Center(
           child: Text(
@@ -56,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-      body: Center(child: lstWidget.elementAt(selectedIndex)),
+      body: SafeArea(child: Center(child: lstWidget.elementAt(selectedIndex))),
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.black,
         backgroundColor: Colors.orangeAccent,
@@ -83,8 +84,8 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(Icons.local_shipping),
           ),
           BottomNavigationBarItem(
-            label: "AboutGst",
-            icon: Icon(Icons.library_add),
+            label: "About GST",
+            icon: Icon(Icons.info),
           ),
         ],
       ),

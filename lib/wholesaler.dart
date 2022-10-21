@@ -22,6 +22,10 @@ class _WholesalerState extends State<Wholesaler> {
   final TextEditingController _gstController = TextEditingController();
 
   void calculateWholsaler() {
+    if (_costGoodsController.text.toString().isNotEmpty &&
+        _profitRatioController.text.toString().isNotEmpty &&
+        _gstController.text.toString().isNotEmpty) {
+
     _costGoods = double.parse(_costGoodsController.text.toString());
     _profitRatio = double.parse(_profitRatioController.text.toString());
     _gst = double.parse(_gstController.text.toString());
@@ -33,6 +37,7 @@ class _WholesalerState extends State<Wholesaler> {
       _cGst = _totalTax / 2;
       _iGst = _totalTax / 2;
     });
+        }
   }
 
   void resetValue() {
@@ -57,10 +62,12 @@ class _WholesalerState extends State<Wholesaler> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
+    return Center(
+      child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             const Center(
               child: Text(
@@ -77,6 +84,7 @@ class _WholesalerState extends State<Wholesaler> {
                 children: [
                   TextFormField(
                     controller: _costGoodsController,
+                    keyboardType: TextInputType.number,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     onChanged: (val) {
                       calculateWholsaler();
@@ -103,6 +111,7 @@ class _WholesalerState extends State<Wholesaler> {
                 children: [
                   TextFormField(
                     controller: _profitRatioController,
+                    keyboardType: TextInputType.number,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     onChanged: (vla) {
                       calculateWholsaler();
@@ -129,6 +138,7 @@ class _WholesalerState extends State<Wholesaler> {
                 children: [
                   TextFormField(
                     controller: _gstController,
+                    keyboardType: TextInputType.number,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     onChanged: (val) {
                       calculateWholsaler();
@@ -152,10 +162,10 @@ class _WholesalerState extends State<Wholesaler> {
             Expanded(
               child: GridView.count(
                 primary: false,
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(10),
                 crossAxisSpacing: 5,
                 mainAxisSpacing: 5,
-                crossAxisCount: 4,
+                crossAxisCount: 2,
                 childAspectRatio: (8 / 6),
                 children: <Widget>[
                   Container(
